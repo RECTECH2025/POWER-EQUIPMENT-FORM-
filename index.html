@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company & Project Information Form</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --light-gray: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-color: #334155;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f1f5f9;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--error-color);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .help-text {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-top: 5px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .success-message {
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: var(--error-color);
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .container {
+                border-radius: 0;
+            }
+            
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Company & Project Information Form</h1>
+            <p>Please complete all required fields marked with *</p>
+        </header>
+        
+        <div class="form-container">
+            <div id="success-message" class="success-message">
+                Thank you! Your form has been submitted successfully.
+            </div>
+            
+            <div id="error-message" class="error-message">
+                There was an error submitting your form. Please try again.
+            </div>
+            
+            <form id="company-project-form">
+                <div class="form-section">
+                    <h2 class="section-title">Company Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required">Email address</label>
+                        <input type="email" id="email" name="email" required>
+                        <p class="help-text">Please use the same email address used when completing the web form.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-name" class="required">Company name</label>
+                        <input type="text" id="company-name" name="company-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-location" class="required">Company HQ location</label>
+                        <input type="text" id="company-location" name="company-location" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-website" class="required">Company website</label>
+                        <input type="url" id="company-website" name="company-website" required>
+                        <p class="help-text">Please provide URL</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="primary-contact" class="required">Primary point of contact</label>
+                        <textarea id="primary-contact" name="primary-contact" required></textarea>
+                        <p class="help-text">If the contact is not yourself or there are additional points of contact at your organization, please provide names, titles, phone numbers and email addresses.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-overview" class="required">Brief company overview</label>
+                        <textarea id="company-overview" name="company-overview" required></textarea>
+                        <p class="help-text">Details can include the years active, sectors serviced, etc.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-size" class="required">What best describes your company's approximate size?</label>
+                        <select id="company-size" name="company-size" required>
+                            <option value="">Select an option</option>
+                            <option value="1-10">1-10 employees</option>
+                            <option value="11-50">11-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-500">201-500 employees</option>
+                            <option value="501-1000">501-1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="funding-process" class="required">What is the process for identifying and funding projects for your company? Where is funding from?</label>
+                        <textarea id="funding-process" name="funding-process" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="previous-procurement" class="required">Has your company previously procured gas turbines or other major energy assets in excess of $100M?</label>
+                        <select id="previous-procurement" name="previous-procurement" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="asset-ownership" class="required">Does your company own or operate gas turbines or other major energy assets?</label>
+                        <select id="asset-ownership" name="asset-ownership" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-pipeline">What does your project pipeline in terms of total MW look like over the next 3-5 years?</label>
+                        <textarea id="project-pipeline" name="project-pipeline"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="target-mw">Of that total 3-5yr project pipeline, is there a target goal of how many MW to execute and procure?</label>
+                        <textarea id="target-mw" name="target-mw"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="technology-split">Is there any approximate split between technology considerations?</label>
+                        <textarea id="technology-split" name="technology-split"></textarea>
+                        <p class="help-text">(Wind, solar, batteries, heavy duty gas turbines, aero gas turbines, etc.)</p>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2 class="section-title">Project Information</h2>
+                    <p class="help-text">Please answer the following questions related to your project. If multiple projects please select one that we can use as basis for discussion or an example project for basis of discussion/exploration</p>
+                    
+                    <div class="form-group">
+                        <label for="project-name" class="required">Project name</label>
+                        <input type="text" id="project-name" name="project-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-description" class="required">Brief project description</label>
+                        <textarea id="project-description" name="project-description" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-location" class="required">Project location</label>
+                        <input type="text" id="project-location" name="project-location" required>
+                        <p class="help-text">City, state and country (if possible.)</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-phase" class="required">Which option best describes the project phase?</label>
+                        <select id="project-phase" name="project-phase" required>
+                            <option value="">Select an option</option>
+                            <option value="concept">Concept/Feasibility</option>
+                            <option value="development">Development</option>
+                            <option value="pre-construction">Pre-Construction</option>
+                            <option value="construction">Construction</option>
+                            <option value="operational">Operational</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="energy-application" class="required">Which option best describes the segment or energy application?</label>
+                        <select id="energy-application" name="energy-application" required>
+                            <option value="">Select an option</option>
+                            <option value="power-generation">Power Generation</option>
+                            <option value="industrial">Industrial</option>
+                            <option value="oil-gas">Oil & Gas</option>
+                            <option value="data-center">Data Center</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="total-mw">Total MW requirements (for the full site):</label>
+                        <input type="text" id="total-mw" name="total-mw">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="products-exploring">What products are you exploring to procure (aeroderivative / heavy-duty gas turbines)?</label>
+                        <textarea id="products-exploring" name="products-exploring"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ge-power-amount">Amount of power (MW) you are looking to be supplied from GE Vernova aeroderivative and / or heavy-duty gas turbines?</label>
+                        <input type="text" id="ge-power-amount" name="ge-power-amount">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="btm-consideration">Is this a Behind The Meter (BTM) or island considered opportunity that isn't planning to connect to the grid?</label>
+                        <select id="btm-consideration" name="btm-consideration">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="btm-details">If so is that permanently or for a certain portion of time?</label>
+                        <textarea id="btm-details" name="btm-details"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="operation-profile" class="required">What is the estimated operation profile?</label>
+                        <select id="operation-profile" name="operation-profile" required>
+                            <option value="">Select an option</option>
+                            <option value="baseload">Baseload</option>
+                            <option value="peaking">Peaking</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="standby">Standby</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="target-cod" class="required">What is the estimated or targeted COD?</label>
+                        <input type="text" id="target-cod" name="target-cod" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cod-phases">If COD is phased in stages at different MW amounts, please describe:</label>
+                        <textarea id="cod-phases" name="cod-phases"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tech-selection-timeline">What is the technology selection timeline?</label>
+                        <input type="text" id="tech-selection-timeline" name="tech-selection-timeline">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="procurement-timeline">What is the procurement timeline for the energy equipment with ability for down payment?</label>
+                        <input type="text" id="procurement-timeline" name="procurement-timeline">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="noise-restrictions">Do you have any noise restrictions?</label>
+                        <textarea id="noise-restrictions" name="noise-restrictions"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="emissions-constraints">Do you have any emissions constraints?</label>
+                        <textarea id="emissions-constraints" name="emissions-constraints"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2 class="section-title">Project Readiness</h2>
+                    
+                    <div class="form-group">
+                        <label for="funding-source" class="required">Is there a funding source identified for this project?</label>
+                        <select id="funding-source" name="funding-source" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="partial">Partially</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="land-secured" class="required">Is the land / site secured?</label>
+                        <select id="land-secured" name="land-secured" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="in-process">In Process</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fuel-supply" class="required">Is there fuel supply available at this location?</label>
+                        <select id="fuel-supply" name="fuel-supply" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="planned">Planned</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="water-supply">Is there a demineralized water supply available?</label>
+                        <select id="water-supply" name="water-supply">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="planned">Planned</option>
+                        </select>
+                        <p class="help-text">(To help assess which technology may be the best fit for your project)</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interconnect-status">What is the interconnect agreement status?</label>
+                        <select id="interconnect-status" name="interconnect-status">
+                            <option value="">Select an option</option>
+                            <option value="secured">Secured</option>
+                            <option value="in-process">In Process</option>
+                            <option value="not-started">Not Started</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="offtaker-secured" class="required">Is the offtaker secured?</label>
+                        <select id="offtaker-secured" name="offtaker-secured" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="in-process">In Process</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ppa-entities">Please specify who are the intended entities involved in the bi-lateral power purchase agreement.</label>
+                        <textarea id="ppa-entities" name="ppa-entities"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="key-permits">Do you have the key permits?</label>
+                        <select id="key-permits" name="key-permits">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="in-process">In Process</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="airport-distance">Is the distance to the nearest airport less than 5 miles?</label>
+                        <select id="airport-distance" name="airport-distance">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                        <p class="help-text">This questions is to understand federal aviation restriction for permitting, which may apply to some applications such as Data Centers.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="epc-engaged">Has the EPC been engaged?</label>
+                        <select id="epc-engaged" name="epc-engaged">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="in-process">In Process</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="owners-engineer">Who is the owner's engineer (if any) and what is the status?</label>
+                        <textarea id="owners-engineer" name="owners-engineer"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fiber-infrastructure">Is there fiber/data infrastructure available?</label>
+                        <select id="fiber-infrastructure" name="fiber-infrastructure">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="planned">Planned</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="grid-connection">Is the grid connection available or planned?</label>
+                        <select id="grid-connection" name="grid-connection">
+                            <option value="">Select an option</option>
+                            <option value="available">Available</option>
+                            <option value="planned">Planned</option>
+                            <option value="not-available">Not Available</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2 class="section-title">Environmental Conditions</h2>
+                    <p class="help-text">For early engagement we can assess these environmental conditions based on the approximate City/State project location provided. If you would like something more precise please feel to provide the additional Environmental Conditions below.</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="site-elevation">What is the site elevation (ft)?</label>
+                            <input type="text" id="site-elevation" name="site-elevation">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="design-temperature">What is the design ambient temperature (°F)?</label>
+                            <input type="text" id="design-temperature" name="design-temperature">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="design-humidity">What is the design relative humidity (%)?</label>
+                            <input type="text" id="design-humidity" name="design-humidity">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="highest-temperature">What is the highest ambient temperature (°F)?</label>
+                            <input type="text" id="highest-temperature" name="highest-temperature">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coldest-temperature">What is the coldest ambient temperature (°F)?</label>
+                            <input type="text" id="coldest-temperature" name="coldest-temperature">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="water-distance">What is the distance to a large water body?</label>
+                            <input type="text" id="water-distance" name="water-distance">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="special-requirements">Please specify if there are special seismic or wind design requirements (beyond typical US IBC).</label>
+                        <textarea id="special-requirements" name="special-requirements"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2 class="section-title">Fuel</h2>
+                    
+                    <div class="form-group">
+                        <label for="fuel-type" class="required">What is the fuel type?</label>
+                        <select id="fuel-type" name="fuel-type" required>
+                            <option value="">Select an option</option>
+                            <option value="natural-gas">Natural Gas</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="hydrogen">Hydrogen</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fuel-agreement" class="required">Do you have an agreement with the fuel supplier complete?</label>
+                        <select id="fuel-agreement" name="fuel-agreement" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="in-process">In Process</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gas-price">What is the assumed gas price in $/MMBTU?</label>
+                        <input type="text" id="gas-price" name="gas-price">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fuel-spec-available">Is the fuel spec available? If yes, attach in email.</label>
+                        <select id="fuel-spec-available" name="fuel-spec-available">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fuel-pressure">What is the fuel pressure at the GT inlet (psig)?</label>
+                        <input type="text" id="fuel-pressure" name="fuel-pressure">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="secondary-fuel">Is there a secondary fuel source?</label>
+                        <select id="secondary-fuel" name="secondary-fuel">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                        <p class="help-text">(e.g., Diesel, H2 blend, etc.)</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="secondary-fuel-spec">Is the secondary fuel spec available?</label>
+                        <select id="secondary-fuel-spec" name="secondary-fuel-spec">
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Form</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('company-project-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // In a real implementation, you would send this data to your server
+            // For now, we'll simulate a successful submission
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'block';
+                submitBtn.textContent = 'Submit Form';
+                submitBtn.disabled = false;
+                this.reset();
+                
+                // In a real implementation, you would send the data to your server
+                // which would then email it to patricio@ricaurtenergy.com
+                console.log('Form data:', data);
+                
+                // Scroll to top to show success message
+                window.scrollTo(0, 0);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
